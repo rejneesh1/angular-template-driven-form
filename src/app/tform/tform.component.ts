@@ -11,8 +11,7 @@ export class TformComponent implements OnInit {
 
   ngOnInit() {
   }
-  onSubmit(form,value){
+  onSubmit(form){
     console.log(form);
-    console.log(value);
   }
 }
