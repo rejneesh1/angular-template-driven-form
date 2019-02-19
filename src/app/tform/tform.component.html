@@ -1,0 +1,47 @@
+<h5 class="text-center">Template Driven Form</h5>
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+     type="text" 
+     class="form-control"  
+     placeholder="Enter Your Name"  
+     pattern="[a-zA-Z]+"
+     minlength="4"
+     required
+     autocomplete="off" 
+     name="name"
+     ngModel
+     #inp_name="ngModel">
+    <p class="help-block text-info" *ngIf="inp_name.errors && inp_name.errors.minlength">
+      Name Should contain at least 4 alphabets
+    </p>
+    <p class="help-block text-info" *ngIf="inp_name.errors && inp_name.errors.pattern">
+      Only alphabets are valid characters.
+    </p>
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input
+     type="text"
+     class="form-control" 
+     placeholder="Enter Your Email ID"
+     name="email"
+     pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
+     required
+     autocomplete="off"
+     ngModel
+     #inp_email="ngModel">
+    <p class="help-block text-info" *ngIf="inp_email.errors && inp_email.errors.pattern">
+      Email should be of format abc@xyz.com
+    </p>
+  </div>
+  <button
+     [disabled]="!f.dirty || !f.valid"
+     name="button"
+     class="btn btn-success">Submit
+  </button>
+</form>
+
+TODO:Remove <br>
+<span *ngIf="f.value">{{f.value|json}}</span>
